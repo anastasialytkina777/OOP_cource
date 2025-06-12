@@ -1,7 +1,10 @@
-package Lab12.stage4;
+package Lab12.stage4.services;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Lab12.stage4.errors.ItemNotFoundException;
+import Lab12.stage4.models.LibraryItem;
 
 public class Library {
     private List<LibraryItem> items = new ArrayList<>();
@@ -37,7 +40,7 @@ public class Library {
     }
 
     // Взять предмет по номеру из списка доступных
-    public LibraryItem borrowItem(int number) {
+    public LibraryItem borrowItem(int number) throws ItemNotFoundException {
         int count = 0;
         for (LibraryItem item : items) {
             if (item.isAvailable()) {
@@ -48,14 +51,15 @@ public class Library {
                 }
             }
         }
-        System.out.println("❌ Невірний номер предмета.");
-        return null;
+        throw new ItemNotFoundException("Предмет з номером \'" + number + "\' не знайдено");
     }
 
     // Вернуть предмет обратно
-    public void returnItem(LibraryItem item) {
+    public void returnItem(LibraryItem item) throws ItemNotFoundException {
         if (item != null) {
             item.returnItem();
+            return;
         }
+        throw new ItemNotFoundException("Предмет не знайдено");
     }
 }

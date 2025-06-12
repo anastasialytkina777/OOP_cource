@@ -1,4 +1,4 @@
-package Lab12.stage4;
+package Lab12.stage4.models;
 
 public abstract class LibraryItem {
     protected String title;

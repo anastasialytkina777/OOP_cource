@@ -1,4 +1,4 @@
-package Lab12.stage4;
+package Lab12.stage4.models;
 
 public class Magazine extends LibraryItem {
     private int issueNumber;

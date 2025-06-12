@@ -1,4 +1,6 @@
-package Lab12.stage4;
+package Lab12.stage4.models;
+
+import Lab12.stage4.util.Reservable;
 
 public class Book extends LibraryItem implements Reservable {
     private String author;

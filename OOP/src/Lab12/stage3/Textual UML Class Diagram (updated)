@@ -1,0 +1,102 @@
+             +---------------------+
+             |  <<interface>>      |
+             |    Reservable       |
+             +---------------------+
+             | + reserve(): void   |
+             +---------------------+
+                     ^ реалізує
+                     |
+              +---------------------------+
+              |           Book            |
+              +---------------------------+
+              | - title: String           |
+              | - author: String          |
+              | - year: int               |
+              | - available: boolean      |
+              +---------------------------+
+              | + getInfo(): String       |
+              | + borrowItem(): void      |
+              | + returnItem(): void      |
+              | + isAvailable(): boolean  |
+              | + reserve(): void         |
+              +---------------------------+
+
+          +-------------------------------+
+          |   LibraryItem (abstract)      |
+          +-------------------------------+
+          | - title: String               |
+          | - year: int                   |
+          | - available: boolean          |
+          +-------------------------------+
+          | + getInfo(): String           |
+          | + borrowItem(): void          |
+          | + returnItem(): void          |
+          | + isAvailable(): boolean      |
+          +-------------------------------+
+              ^            ^           ^
+              |            |           |___________________________________
+              |            |_________________                             |
+              |                             |                             |
+       +---------------------------+ +----------------------------+ +----------------------------+
+       |         Book              | |         Magazine           | |           DVD             |
+       +---------------------------+ +----------------------------+ +----------------------------+
+       | - title: String           | | - title: String            | | - title: String            |
+       | - author: String          | | - year: int                | | - year: int                |
+       | - year: int               | | - issueNumber: int         | | - duration: int            |
+       | - available: boolean      | | - available: boolean       | | - available: boolean       |
+       +---------------------------+ +----------------------------+ +----------------------------+
+       | + getInfo(): String       | | + getInfo(): String        | | + getInfo(): String        |
+       | + borrowItem(): void      | | + borrowItem(): void       | | + borrowItem(): void       |
+       | + returnItem(): void      | | + returnItem(): void       | | + returnItem(): void       |
+       | + isAvailable(): boolean  | | + isAvailable(): boolean   | | + isAvailable(): boolean   |
+       | + reserve(): void         |                              |                              |
+       +---------------------------+ +----------------------------+ +----------------------------+
+
+                  ◇ композиція
+                  |
+       +------------------------------+
+       |           Library            |
+       +------------------------------+
+       | - items: List<LibraryItem>   |
+       +------------------------------+
+       | + addItem()                  |
+       | + listAllItems()             |
+       | + listAvailableItems()       |
+       | + borrowItem()               |
+       | + returnItem()               |
+       +------------------------------+
+
+                  ◇ агрегація
+                  |
+       +------------------------------+
+       |            User              |
+       +------------------------------+
+       | - name: String               |
+       | - borrowedItems: List<LibraryItem> |
+       +------------------------------+
+       | + borrowItem()               |
+       | + returnItem()               |
+       +------------------------------+
+
+                  ─────► асоціація
+                  |
+       +------------------------------+
+       |       LibraryHandler         |
+       +------------------------------+
+       | - library: Library           |
+       | - borrowedItems: List        |
+       +------------------------------+
+       | + handleUserChoice()         |
+       | + borrowItem()               |
+       | + returnItem()               |
+       +------------------------------+
+                  |
+                  └────► залежність
+                          до UserInputHandler
+
+       +------------------------------+
+       |      UserInputHandler        |
+       +------------------------------+
+       | + getIntInput()              |
+       | + getStringInput()           |
+       +------------------------------+

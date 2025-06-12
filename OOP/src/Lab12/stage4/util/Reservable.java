@@ -1,4 +1,4 @@
-package Lab12.stage4;
+package Lab12.stage4.util;
 
 public interface Reservable {
     void reserve();

@@ -1,4 +1,4 @@
-package Lab12.stage4;
+package Lab12.stage4.models;
 
 public class DVD extends LibraryItem {
     private int duration;  // длительность в минутах
@@ -13,4 +13,3 @@ public class DVD extends LibraryItem {
         return title + " (DVD), " + duration + " хвилин, " + year;
     }
 }
-
